@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Merchant Creation</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>  
+    <h1>Merchant Creation</h1>
+    <form action="">
+      <div class="inputarea">
+        <label for="p_ext_user_id">External UserName : </label
+        ><input
+          class="formItem"
+          name="p_ext_user_id"
+          id="p_ext_user_id"
+          type="text"
+        />
+      </div>
+      <div class="inputarea">
+        <label for="p_int_user_id">Internal UserName : </label
+        ><input
+          class="formItem"
+          name="p_int_user_id"
+          id="p_int_user_id"
+          type="text"
+        />
+      </div>
+      <div class="inputarea">
+        <label for="p_password_ext">External Password : </label
+        ><input
+          class="formItem"
+          name="p_password_ext"
+          id="p_password_ext"
+          type="password"
+        />
+      </div>
+      <div class="inputarea">
+        <label for="p_password_int">Internal Password : </label
+        ><input
+          class="formItem"
+          name="p_password_int"
+          id="p_password_int"
+          type="password"
+        />
+      </div>
+      <div class="inputarea">
+        <label for="bank">Bank : </label>
+        <select class="formItem" name="bank" id="bank">
+          <option value="013">013</option>
+          <option value="016">016</option>
+        </select>
+      </div>
+      <div class="inputarea">
+        <label for="p_ginfee">Fee : </label
+        ><input class="formItem" name="p_ginfee" id="p_ginfee" type="text" />
+      </div>
+      <div class="inputarea">
+        <label for="p_group_id">Fraud Group ID : </label
+        ><input
+          class="formItem"
+          name="p_group_id"
+          id="p_group_id"
+          type="text"
+        />
+      </div>
+      <button id="callProcedureBtn">Create Merchant</button>
+    </form>
+
+    <script>
+      const callProcedureBtn = document.getElementById("callProcedureBtn");
+
+      callProcedureBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        let data = [];
+        let elements = document.getElementsByClassName("formItem");
+
+        for (let index = 0; index < 7; index++) {
+          data[index] = elements[index].value;
+        }
+
+        fetch("/call-procedure", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ data }),
+        })
+          .then((response) => response.text())
+          .then((result) => {
+            console.log(result);
+            alert(result);
+          })
+          .catch((error) => {
+            console.error(error);
+            alert("Error occured during calling Procedure.");
+          });
+      });
+    </script>
+  </body>
+</html>
