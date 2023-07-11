@@ -6,13 +6,18 @@ const port = 3000;
 // Function to open connection to DB
 async function createOraclePool(dbConfig) {
   try {
-    await oracledb.createPool(dbConfig);
+    const pool = await oracledb.createPool(dbConfig);
     console.log("Successfully Connected to DB.");
+    setTimeout(() => {
+      pool.close();
+      console.log('Pool successfully Closed');
+     }, 5000);
   } catch (err) {
     console.error("Error occured while connecting DB:", err);
     process.exit(1);
+    
   }
-  console.log("Entered Credentials: "+ dbConfig);
+  console.log("Entered Credentials: "+ JSON.stringify(dbConfig));
 }
 
 // Use public folder to serve static files.
