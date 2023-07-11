@@ -1,5 +1,6 @@
 const callProcedureBtn = document.getElementById("callProcedureBtn");
 
+//Adding function for Submit button Click event
 callProcedureBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
@@ -13,17 +14,19 @@ callProcedureBtn.addEventListener("click", (e) => {
     data: [],
   };
 
+  //Inserting form Data to Request Body
   for (let index = 0; index < 7; index++) {
     requestBody.data[index] = elements[index].value;
   }
 
+  //Inserting DB data to Request Body
   requestBody.dbConfig.connectString = (() => {
     if (connectString === "test") return "10.10.90.41:1521/SVDB";
     else if (connectString === "pre") return "10.10.34.143:1521/EPG";
     else if (connectString === "prod") return "10.10.50.72:1521/EPG";
   })();
-  console.log(requestBody);
 
+  //Sending Request to Backend
   fetch("/call-procedure", {
     method: "POST",
     headers: {
@@ -33,11 +36,9 @@ callProcedureBtn.addEventListener("click", (e) => {
   })
     .then((response) => response.text())
     .then((result) => {
-      console.log(result);
       alert(result);
     })
     .catch((error) => {
-      console.error(error);
       alert("Error occured during calling Procedure.");
     });
 });
