@@ -4,11 +4,3 @@ body {
     justify-content: center;
     align-items: center;
 }
-
-.inputarea {
-    padding: 1.5em;
-}
-
-#container {
-    display: none;
-}

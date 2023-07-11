@@ -5,30 +5,34 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <h1>Merchant Creation</h1>
     <div class="login">
       <form action="">
         <div class="inputarea">
           <label for="db-select">Select the Database</label>
           <select name="db-select" id="db-select">
             <option value="test">FRONT_TEST</option>
-            <option value="pre">EPG_EXTERNAL_PREPROD</option>
+            <option selected value="pre">EPG_EXTERNAL_PREPROD</option>
             <option value="prod">EPG_PROD</option>
           </select>
         </div>
         <div class="inputarea">
           <label for="userName">User Name : </label
-          ><input id="userName" name="userName" type="text" />
+          ><input value="DEV" id="userName" name="userName" type="text" />
         </div>
         <div class="inputarea">
           <label for="password">Password : </label
-          ><input id="password" name="password" type="password" />
+          ><input
+            value="Aa123456@"
+            id="password"
+            name="password"
+            type="password"
+          />
         </div>
-        <button>Log In</button>
       </form>
     </div>
-
+    <br /><br /><br /><br /><br />
     <div id="container">
-      <h1>Merchant Creation</h1>
       <form action="">
         <div class="inputarea">
           <label for="p_ext_user_id">External UserName : </label
@@ -70,7 +74,7 @@
           <label for="bank">Bank : </label>
           <select class="formItem" name="bank" id="bank">
             <option value="013">013</option>
-            <option value="016">016</option>
+            <option selected value="016">016</option>
           </select>
         </div>
         <div class="inputarea">
