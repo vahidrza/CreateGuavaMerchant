@@ -14,6 +14,8 @@ callProcedureBtn.addEventListener("click", (e) => {
     data: [],
   };
 
+  console.log(elements);
+
   //Inserting form Data to Request Body
   for (let index = 0; index < 7; index++) {
     requestBody.data[index] = elements[index].value;

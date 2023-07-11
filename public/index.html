@@ -3,96 +3,122 @@
   <head>
     <title>Merchant Creation</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
   </head>
-  <body>
-    <h1>Merchant Creation</h1>
-    <div class="login">
-      <form action="">
-        <div class="inputarea">
-          <label for="db-select">Select the Database</label>
-          <select name="db-select" id="db-select">
-            <option value="test">FRONT_TEST</option>
-            <option selected value="pre">EPG_EXTERNAL_PREPROD</option>
-            <option value="prod">EPG_PROD</option>
-          </select>
-        </div>
-        <div class="inputarea">
-          <label for="userName">User Name : </label
-          ><input value="DEV" id="userName" name="userName" type="text" />
-        </div>
-        <div class="inputarea">
-          <label for="password">Password : </label
-          ><input
-            id="password"
-            name="password"
-            type="password"
-          />
-        </div>
-      </form>
-    </div>
-    <br /><br /><br /><br /><br />
-    <div id="container">
-      <form action="">
-        <div class="inputarea">
-          <label for="p_ext_user_id">External UserName : </label
-          ><input
-            class="formItem"
-            name="p_ext_user_id"
-            id="p_ext_user_id"
-            type="text"
-          />
-        </div>
-        <div class="inputarea">
-          <label for="p_int_user_id">Internal UserName : </label
-          ><input
-            class="formItem"
-            name="p_int_user_id"
-            id="p_int_user_id"
-            type="text"
-          />
-        </div>
-        <div class="inputarea">
-          <label for="p_password_ext">External Password : </label
-          ><input
-            class="formItem"
-            name="p_password_ext"
-            id="p_password_ext"
-            type="password"
-          />
-        </div>
-        <div class="inputarea">
-          <label for="p_password_int">Internal Password : </label
-          ><input
-            class="formItem"
-            name="p_password_int"
-            id="p_password_int"
-            type="password"
-          />
-        </div>
-        <div class="inputarea">
-          <label for="bank">Bank : </label>
-          <select class="formItem" name="bank" id="bank">
+  <body id="body">
+    <img id="logo" src="./offers-logo.png" alt="" srcset="" />
+    <form class="login row g-3" action="">
+      <div class="inputarea col-md-4">
+        <label class="form-label" for="db-select">Database :</label>
+        <select class="form-select" name="db-select" id="db-select">
+          <option selected value="test">FRONT_TEST</option>
+          <option value="pre">EPG_EXTERNAL_PREPROD</option>
+          <option value="prod">EPG_PROD</option>
+        </select>
+      </div>
+      <div class="inputarea col-md-4">
+        <label class="form-label" for="userName">User Name : </label
+        ><input
+          class="form-control"
+          id="userName"
+          name="userName"
+          type="text"
+        />
+      </div>
+      <div class="inputarea col-md-4">
+        <label class="form-label" for="password">Password : </label
+        ><input
+          class="form-control"
+          id="password"
+          name="password"
+          type="password"
+        />
+      </div>
+    </form>
+    <form class="container row g-3" action="">
+      <div class="inputarea col-md-5">
+        <label class="form-label" for="p_ext_user_id"
+          >External UserName : </label
+        ><input
+          class="form-control formItem"
+          name="p_ext_user_id"
+          id="p_ext_user_id"
+          type="text"
+        />
+      </div>
+      <div class="inputarea col-md-5">
+        <label class="form-label" for="p_int_user_id"
+          >Internal UserName : </label
+        ><input
+          class="form-control formItem"
+          name="p_int_user_id"
+          id="p_int_user_id"
+          type="text"
+        />
+      </div>
+      <div class="inputarea col-md-5">
+        <label class="form-label" for="p_password_ext"
+          >External Password : </label
+        ><input
+          class="form-control formItem"
+          name="p_password_ext"
+          id="p_password_ext"
+          type="password"
+        />
+      </div>
+      <div class="inputarea col-md-5">
+        <label class="form-label" for="p_password_int"
+          >Internal Password : </label
+        ><input
+          class="form-control formItem"
+          name="p_password_int"
+          id="p_password_int"
+          type="password"
+        />
+      </div>
+      <div id="free" class="row g-12">
+        <div class="inputarea col-md-2">
+          <label class="form-label" for="bank">Bank : </label>
+          <select class="form-select formItem" name="bank" id="bank">
             <option value="013">013</option>
             <option selected value="016">016</option>
           </select>
         </div>
-        <div class="inputarea">
-          <label for="p_ginfee">Fee : </label
-          ><input class="formItem" name="p_ginfee" id="p_ginfee" type="text" />
-        </div>
-        <div class="inputarea">
-          <label for="p_group_id">Fraud Group ID : </label
+        <div class="inputarea col-md-1">
+          <label class="form-label" for="p_ginfee">Fee : </label
           ><input
-            class="formItem"
+            class="form-control formItem"
+            name="p_ginfee"
+            id="p_ginfee"
+            type="text"
+          />
+        </div>
+        <div class="inputarea col-md-2">
+          <label class="form-label" for="p_group_id">Fraud Group ID : </label
+          ><input
+            class="form-control formItem"
             name="p_group_id"
             id="p_group_id"
             type="text"
           />
         </div>
-        <button id="callProcedureBtn">Create Merchant</button>
-      </form>
-    </div>
-
+      </div>
+      <div class="col-12">
+        <button class="btn btn-outline-success" id="callProcedureBtn">
+          Create Merchant
+        </button>
+      </div>
+    </form>
     <script type="application/javascript" src="./app.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

@@ -7,7 +7,7 @@ const port = 3000;
 async function createOraclePool(dbConfig) {
   try {
     const pool = await oracledb.createPool(dbConfig);
-    console.log("Successfully Connected to DB.");
+    console.log("Pool opened.");
     setTimeout(() => {
       pool.close();
       console.log('Pool successfully Closed');
