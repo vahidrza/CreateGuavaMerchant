@@ -12,6 +12,7 @@ async function createOraclePool(dbConfig) {
     console.error("Error occured while connecting DB:", err);
     process.exit(1);
   }
+  console.log("Entered Credentials: "+ dbConfig);
 }
 
 // Use public folder to serve static files.
@@ -21,6 +22,7 @@ app.use(express.json());
 // Route - which will start on click the Button
 app.post("/call-procedure", async (req, res) => {
   //Starting to power on the Function (Connecting to DB)
+  console.log('createOraclePool function called');
   await createOraclePool(req.body.requestBody.dbConfig);
   let connection;
 
@@ -42,7 +44,7 @@ app.post("/call-procedure", async (req, res) => {
 
     //Commiting the query
     await connection.execute("COMMIT");
-    res.status(200).send("Procedure successfully called.");
+    res.status(200).send("Procedure successfully called and committed.");
   } catch (err) {
     console.error("Error occured during calling Procedure:", err);
     res.status(500).send("Error occured during calling Procedure.");
@@ -50,6 +52,7 @@ app.post("/call-procedure", async (req, res) => {
     if (connection) {
       try {
         await connection.close();
+        
         console.log("Oracle DB connection successfully closed");
       } catch (err) {
         console.error("Oracle DB connection couldn't closed:", err);

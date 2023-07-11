@@ -37,9 +37,9 @@ callProcedureBtn.addEventListener("click", (e) => {
     .then((response) => response.text())
     .then((result) => {
       alert(result);
-      
+
       //Cleaning Inputs' values
-      if (result === "Procedure successfully called.")
+      if (result === "Procedure successfully called and committed.")
         [0, 1, 2, 3, 5, 6].forEach((index) => {
           elements[index].value = "";
         });
