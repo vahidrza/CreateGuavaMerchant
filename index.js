@@ -52,7 +52,7 @@ app.post("/call-procedure", async (req, res) => {
     res.status(200).send("Procedure successfully called and committed.");
   } catch (err) {
     console.error("Error occured during calling Procedure:", err);
-    res.status(500).send("Error occured during calling Procedure.");
+    res.status(500).send("Error:" + err);
   } finally {
     if (connection) {
       try {

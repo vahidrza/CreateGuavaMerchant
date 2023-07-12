@@ -8,6 +8,7 @@ callProcedureBtn.addEventListener("click", (e) => {
   const password = document.getElementById("password").value;
   const connectString = document.getElementById("db-select").value;
   let elements = document.getElementsByClassName("formItem");
+  let emptyInputValue = false;    // for checking inputs before sending request to backend API
 
   let requestBody = {
     dbConfig: { user: user, password: password, connectString: "" },
@@ -28,25 +29,33 @@ callProcedureBtn.addEventListener("click", (e) => {
     else if (connectString === "prod") return "10.10.50.72:1521/EPG";
   })();
 
-  //Sending Request to Backend
-  fetch("/call-procedure", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ requestBody }),
-  })
-    .then((response) => response.text())
-    .then((result) => {
-      alert(result);
+  for (let index = 0; index <= 6; index++) {
+    if (document.getElementsByTagName("input")[index].value === "") {
+      emptyInputValue = true;
+    }
+  }
 
-      //Cleaning Inputs' values
-      if (result === "Procedure successfully called and committed.")
-        [0, 1, 2, 3, 5, 6].forEach((index) => {
-          elements[index].value = "";
-        });
+  if (emptyInputValue === false) {
+    //Sending Request to Backend
+    fetch("/call-procedure", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ requestBody }),
     })
-    .catch((error) => {
-      alert("Error occured during calling Procedure.");
-    });
+      .then((response) => response.text())
+      .then((result) => {
+        alert(result);
+
+        //Cleaning Inputs' values
+        if (result === "Procedure successfully called and committed.")
+          [0, 1, 2, 3, 5, 6].forEach((index) => {
+            elements[index].value = "";
+          });
+      })
+      .catch((error) => {
+        alert("Error occured during calling Procedure.");
+      });
+  } else alert("Empty Input, please fulfill all inputs");
 });
