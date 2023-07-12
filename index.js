@@ -1,7 +1,7 @@
 const express = require("express");
 const oracledb = require("oracledb");
 const app = express();
-const port = 3000;
+const port = 80;
 
 // Function to open connection to DB
 async function createOraclePool(dbConfig) {
