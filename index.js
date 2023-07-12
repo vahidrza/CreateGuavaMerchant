@@ -4,7 +4,7 @@ const app = express();
 const port = 80;
 
 // Function to open connection to DB
-async function createOraclePool(dbConfig) {
+async function createOraclePool(dbConfig,data) {
   try {
     const pool = await oracledb.createPool(dbConfig);
     console.log(new Date() + "Pool opened.");
@@ -18,6 +18,7 @@ async function createOraclePool(dbConfig) {
     
   }
   console.log(new Date() + "Entered Credentials: "+ JSON.stringify(dbConfig));
+  console.log(new Date() + "Entered Data: "+ JSON.stringify(data));
 }
 
 // Use public folder to serve static files.
@@ -28,7 +29,7 @@ app.use(express.json());
 app.post("/call-procedure", async (req, res) => {
   //Starting to power on the Function (Connecting to DB)
   console.log(new Date() + 'createOraclePool function called');
-  await createOraclePool(req.body.requestBody.dbConfig);
+  await createOraclePool(req.body.requestBody.dbConfig,req.body.requestBody.data);
   let connection;
 
   try {
