@@ -7,17 +7,17 @@ const port = 80;
 async function createOraclePool(dbConfig) {
   try {
     const pool = await oracledb.createPool(dbConfig);
-    console.log("Pool opened.");
+    console.log(new Date() + "Pool opened.");
     setTimeout(() => {
       pool.close();
-      console.log('Pool successfully Closed');
+      console.log(new Date() + 'Pool successfully Closed');
      }, 5000);
   } catch (err) {
-    console.error("Error occured while connecting DB:", err);
+    console.error(new Date() + "Error occured while connecting DB:", err);
     process.exit(1);
     
   }
-  console.log("Entered Credentials: "+ JSON.stringify(dbConfig));
+  console.log(new Date() + "Entered Credentials: "+ JSON.stringify(dbConfig));
 }
 
 // Use public folder to serve static files.
@@ -27,7 +27,7 @@ app.use(express.json());
 // Route - which will start on click the Button
 app.post("/call-procedure", async (req, res) => {
   //Starting to power on the Function (Connecting to DB)
-  console.log('createOraclePool function called');
+  console.log(new Date() + 'createOraclePool function called');
   await createOraclePool(req.body.requestBody.dbConfig);
   let connection;
 
@@ -51,16 +51,16 @@ app.post("/call-procedure", async (req, res) => {
     await connection.execute("COMMIT");
     res.status(200).send("Procedure successfully called and committed.");
   } catch (err) {
-    console.error("Error occured during calling Procedure:", err);
+    console.error(new Date() + "Error occured during calling Procedure:", err);
     res.status(500).send("Error:" + err);
   } finally {
     if (connection) {
       try {
         await connection.close();
         
-        console.log("Oracle DB connection successfully closed");
+        console.log(new Date() + "Oracle DB connection successfully closed");
       } catch (err) {
-        console.error("Oracle DB connection couldn't closed:", err);
+        console.error(new Date() + "Oracle DB connection couldn't closed:", err);
       }
     }
   }
@@ -68,5 +68,5 @@ app.post("/call-procedure", async (req, res) => {
 
 // Starting the server
 app.listen(port, () => {
-  console.log(`Server is running at ${port}:th port 🚀🚀🚀.`);
+  console.log(new Date() + `Server is running at ${port}:th port 🚀🚀🚀.`);
 });
