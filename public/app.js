@@ -8,7 +8,7 @@ callProcedureBtn.addEventListener("click", (e) => {
   const password = document.getElementById("password").value;
   const connectString = document.getElementById("db-select").value;
   let elements = document.getElementsByClassName("formItem");
-  let emptyInputValue = false;    // for checking inputs before sending request to backend API
+  let emptyInputValue = false; // for checking inputs before sending request to backend API
 
   let requestBody = {
     dbConfig: { user: user, password: password, connectString: "" },
@@ -35,6 +35,7 @@ callProcedureBtn.addEventListener("click", (e) => {
     }
   }
 
+  // Check all inputs are fullfilled or not
   if (emptyInputValue === false) {
     //Sending Request to Backend
     fetch("/call-procedure", {
@@ -57,5 +58,5 @@ callProcedureBtn.addEventListener("click", (e) => {
       .catch((error) => {
         alert("Error occured during calling Procedure.");
       });
-  } else alert("Empty Input, please fulfill all inputs");
+  } else alert("Error : Empty Input(s), please fulfill all inputs");
 });
