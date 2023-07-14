@@ -1,7 +1,7 @@
 const express = require("express");
 const oracledb = require("oracledb");
 const app = express();
-const port = 80;
+const port = 3000;
 
 // Function to open connection to DB
 async function createOraclePool(dbConfig,data) {
@@ -68,6 +68,6 @@ app.post("/call-procedure", async (req, res) => {
 });
 
 // Starting the server
-app.listen(port, () => {
+app.listen(port, '0.0.0.0' , () => {
   console.log(new Date() + `Server is running at ${port}:th port 🚀🚀🚀.`);
 });
