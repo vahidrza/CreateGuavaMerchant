@@ -2,14 +2,17 @@ const express = require("express");
 const oracledb = require("oracledb");
 const app = express();
 const winston = require('winston');
+const path = require('path');
 const port = 3000;
+
+const logsFolder = (__dirname, './logs/')
 
 //Imported package to logging
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.json(),
   transports: [
-    new winston.transports.File({ filename: `${new Date().toISOString().replace(/:/g, '-')}.log` })
+    new winston.transports.File({ filename: path.join(logsFolder,`${new Date().toISOString().replace(/:/g, '-')}.log`) })
   ]
 });
 
