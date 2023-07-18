@@ -9,7 +9,7 @@ const logger = winston.createLogger({
   level: 'info',
   format: winston.format.json(),
   transports: [
-    new winston.transports.File({ filename: 'app.log' })
+    new winston.transports.File({ filename: `${new Date().toISOString().replace(/:/g, '-')}.log` })
   ]
 });
 
